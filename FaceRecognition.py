@@ -1,5 +1,4 @@
 import cv2
-import numpy as np
 import face_recognition
 
 imgElon = face_recognition.load_image_file("Images For Facial Recognition/Elon Musk.jpg")

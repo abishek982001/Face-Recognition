@@ -4,7 +4,7 @@ import os
 import numpy as np
 from datetime import datetime
 
-path = 'Images For Attendance'
+path = 'Resources/Images'
 images=[]
 classNames=[]
 fnames = os.listdir(path)

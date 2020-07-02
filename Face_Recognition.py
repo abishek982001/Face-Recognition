@@ -51,13 +51,13 @@ class FaceRecognition:
                 matches = face_recognition.compare_faces(self.encodeList, encodeFace) # returns True if match is found
                 faceDis = face_recognition.face_distance(self.encodeList, encodeFace) # Returns the distance between encodings
                 print(faceDis)
-                matchIndex = np.argmin(faceDis)
+                matchIndex = np.argmin(faceDis)  # Returns the index having minimum distance between the known encodings
 
                 if matches[matchIndex]:
                     name = self.classNames[matchIndex].upper()
                     print(name)
                     y1,x2,y2,x1 = faceLoc
-                    y1,x2,y2,x1 = y1*4,x2*4,y2*4,x1*4  # To revert the earlier resize 
+                    y1,x2,y2,x1 = y1*4,x2*4,y2*4,x1*4  # To revert the earlier resize in line 44, so that the drawn box fits the face in the current frame size
                     cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,0), 2)
                     cv2.rectangle(img, (x1,y2-35), (x2,y2), (0,255,0), cv2.FILLED)
                     cv2.putText(img, name, (x1+6,y2-6), cv2.FONT_HERSHEY_COMPLEX, 1, (255,255,255), 2)

@@ -70,9 +70,3 @@ class FaceRecognition:
                 now = datetime.now()
                 dtString = now.strftime('%H:%M:%S')
                 f.writelines('\n{},{}'.format(name, dtString))
-
-
-#obj = FaceRecognition()
-#obj.fileNames()
-#obj.initiateRecognition()
-

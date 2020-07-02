@@ -1,5 +1,5 @@
-import Modified
+import Face_Recognition
 
-faceRecognition = Modified.FaceRecognition()
+faceRecognition = Face_Recognition.FaceRecognition()
 faceRecognition.fileNames()
 faceRecognition.initiateRecognition()

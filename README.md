@@ -8,6 +8,8 @@ This python program can reconize your face!
 * The image you use should have proper names eg:`yourname.jpg/png` because the filename is assumed as the `person's name` by this program.
 * If everything is right, this opens your `webcam`.
 * Once your face is detected, a green color bounding box will appear along with the name which you used in the photo. 
+* Also your name will be displayed in the terminal along with the time.
+* To stop the program press `ctrl+C` in your terminal.
 
 # Requirements
 Libraries used:

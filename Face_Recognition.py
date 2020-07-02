@@ -11,11 +11,14 @@ class FaceRecognition:
     nameList=[]
 
     def __init__(self, path, fnames):
+        """Parameterised Constructor for initialising path and files"""
         self.path = path
         self.fnames = fnames
         print(self.fnames)
     
     def fileNames(self):
+        """Function to read the image and get the filenames without extension.
+           This name is assumed as the users name and is used during face recognition"""
         for name in self.fnames:
             curImg = cv2.imread('{}/{}'.format(self.path, name))
             self.images.append(curImg)
@@ -23,6 +26,7 @@ class FaceRecognition:
         print(self.classNames)
         
     def findEncodings(self,images):
+        """This function is used to calculate the encodings of a image using face_recognition library"""
         for img in self.images:
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             encode = face_recognition.face_encodings(img)[0]
@@ -30,6 +34,8 @@ class FaceRecognition:
         
 
     def initiateRecognition(self):
+        """This function starts the web cam and gets the encodings from the findEncodings function and uses it to
+           calculate the distance between the encodings already found and the current encoding to find a match."""
         encodeList = self.findEncodings(self.images)  
         print("Encoding Complete")
         cap = cv2.VideoCapture(0)
@@ -42,8 +48,8 @@ class FaceRecognition:
             encodeCurFrame = face_recognition.face_encodings(imgS, facesCurFrame)
     
             for encodeFace, faceLoc in zip(encodeCurFrame, facesCurFrame):
-                matches = face_recognition.compare_faces(self.encodeList, encodeFace)
-                faceDis = face_recognition.face_distance(self.encodeList, encodeFace)
+                matches = face_recognition.compare_faces(self.encodeList, encodeFace) # returns True if match is found
+                faceDis = face_recognition.face_distance(self.encodeList, encodeFace) # Returns the distance between encodings
                 print(faceDis)
                 matchIndex = np.argmin(faceDis)
 
@@ -61,6 +67,7 @@ class FaceRecognition:
             cv2.waitKey(1)
 
     def enter_name(self,name):
+        """Function to put a entry of the identified person with time in a csv file"""
         with open('Entry.csv', 'r+') as f:
             myDataList = f.readlines()
             for line in myDataList:

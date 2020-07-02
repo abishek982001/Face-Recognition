@@ -55,25 +55,19 @@ class FaceRecognition:
 
                 if matches[matchIndex]:
                     name = self.classNames[matchIndex].upper()
-                    print(name)
+                    print(name, end='\t')
                     y1,x2,y2,x1 = faceLoc
                     y1,x2,y2,x1 = y1*4,x2*4,y2*4,x1*4  # To revert the earlier resize in line 44, so that the drawn box fits the face in the current frame size
                     cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,0), 2)
                     cv2.rectangle(img, (x1,y2-35), (x2,y2), (0,255,0), cv2.FILLED)
                     cv2.putText(img, name, (x1+6,y2-6), cv2.FONT_HERSHEY_COMPLEX, 1, (255,255,255), 2)
-                    self.enter_name(name)
+                    self.display_time()
 
             cv2.imshow('Web Cam', img)
             cv2.waitKey(1)
 
-    def enter_name(self,name):
-        """Function to put a entry of the identified person with time in a csv file"""
-        with open('Entry.csv', 'r+') as f:
-            myDataList = f.readlines()
-            for line in myDataList:
-                entry = line.split(',')
-                self.nameList.append(entry[0])
-            if name not in self.nameList:
-                now = datetime.now()
-                dtString = now.strftime('%H:%M:%S')
-                f.writelines('\n{},{}'.format(name, dtString))
+    def display_time(self):
+        """Function to display time"""
+        now = datetime.now()
+        time = now.strftime('%H:%M:%S')
+        print(time)

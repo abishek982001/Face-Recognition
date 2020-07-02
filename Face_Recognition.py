@@ -10,9 +10,9 @@ class FaceRecognition:
     encodeList=[]
     nameList=[]
 
-    def __init__(self):
-        self.path = 'Resources/Images'
-        self.fnames = os.listdir(self.path)
+    def __init__(self, path, fnames):
+        self.path = path
+        self.fnames = fnames
         print(self.fnames)
     
     def fileNames(self):

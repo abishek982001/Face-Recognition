@@ -72,7 +72,7 @@ class FaceRecognition:
                 f.writelines('\n{},{}'.format(name, dtString))
 
 
-obj = FaceRecognition()
-obj.fileNames()
-obj.initiateRecognition()
+#obj = FaceRecognition()
+#obj.fileNames()
+#obj.initiateRecognition()
 
